@@ -1,17 +1,15 @@
 // Import the express module, which is a web framework for Node.js
 import express from 'express';
+
 // Create an instance of an Express application
 const app = express();
+
 // Define the port number on which the server will listen
 // It will use the port defined in the environment variable PORT, or default to 5001 if not set
 const PORT = process.env.PORT || 5001;
-// Import the cors module, which is used to enable Cross-Origin Resource Sharing (CORS)
-// This allows your backend to accept requests from different origins (e.g., your frontend)
-import cors from 'cors';
-// Enable CORS for all routes
-app.use(cors());
+
 // Define a simple GET route for the root path
-app.get('/', (_, res) => {
+app.get('/', (req, res) => {
     res.send('Welcome to the server!');
 });
 // Define a simple GET route for testing the communication between frontend and backend
@@ -25,3 +23,6 @@ app.get('/api/test', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
+
+// Export the Express app instance
+export default app;
