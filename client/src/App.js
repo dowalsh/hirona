@@ -16,11 +16,6 @@ function App() {
     } catch (error) {
       console.error('Error fetching data:', error);
       setMessage('Failed to fetch message from backend');
-
-      // Log the error to Vercel
-      if (window.Vercel) {
-        window.Vercel.logError('Error fetching data:', error);
-      }
     }
   };
 

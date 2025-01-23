@@ -11,19 +11,9 @@ const PORT = process.env.PORT || 5001;
 // Import the cors module, which is used to enable Cross-Origin Resource Sharing (CORS)
 // This allows your backend to accept requests from different origins (e.g., your frontend)
 import cors from 'cors';
+// Enable CORS for all routes
+app.use(cors());
 
-
-const allowedOrigins = ['https://hirona-client.vercel.app'];
-
-app.use(cors({
-  origin: function(origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  }
-}));
 
 // Define a simple GET route for the root path
 app.get('/', (_, res) => {
