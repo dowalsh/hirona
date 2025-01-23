@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 function App() {
   const [message, setMessage] = useState('');
 
   const handleClick = async () => {
     try {
       // Make a GET request to the backend API
-      const response = await fetch('http://localhost:5001/api/test');
+      const response = await fetch(`${apiUrl}/api/test`);
       const data = await response.json();
 
       // Set the message in the state
