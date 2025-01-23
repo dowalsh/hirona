@@ -1,8 +1,17 @@
 // Import the express module, which is a web framework for Node.js
-express = require('express');
+const express = require('express');
+
+// Import the cors module, which is a middleware that allows for cross-origin resource sharing
+const cors = require('cors');
 
 // Create an instance of an Express application
 const app = express();
+
+// Use the cors middleware to allow for cross-origin requests
+app.use(cors({
+    origin: ['http://localhost:3000', 'https://hirona-client.vercel.app'],
+    methods: ['GET', 'POST']
+}));
 
 // Define the port number on which the server will listen
 // It will use the port defined in the environment variable PORT, or default to 5001 if not set
