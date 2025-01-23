@@ -1,27 +1,27 @@
-// Import the express and cors modules
+// Import the express module, which is a web framework for Node.js
 import express from 'express';
-import cors from 'cors';
-
-// Create an instance of the Express application
+// Create an instance of an Express application
 const app = express();
-
-// Define CORS options (you can restrict the origins if necessary)
-const corsOptions = {
-  origin: "*",  // Allows all origins; update this to be more restrictive if necessary
-};
-
-// Apply CORS middleware globally
-app.use(cors(corsOptions));
-
+// Define the port number on which the server will listen
+// It will use the port defined in the environment variable PORT, or default to 5001 if not set
+const PORT = process.env.PORT || 5001;
+// Import the cors module, which is used to enable Cross-Origin Resource Sharing (CORS)
+// This allows your backend to accept requests from different origins (e.g., your frontend)
+import cors from 'cors';
+// Enable CORS for all routes
+app.use(cors());
 // Define a simple GET route for the root path
 app.get('/', (_, res) => {
-  res.send('Welcome to the server!');
+    res.send('Welcome to the server!');
 });
-
-// Define a simple GET route for testing communication
+// Define a simple GET route for testing the communication between frontend and backend
+// When a GET request is made to the /api/test endpoint, the server will respond with a JSON object
 app.get('/api/test', (req, res) => {
-  res.json({ message: 'Hello from Backend!' });
+    // Send a JSON response with a message
+    res.json({ message: 'Hello from Backend!' });
 });
-
-// Export the Express app so Vercel can use it as a serverless function
-export default app;
+// Start the server and have it listen on the defined port
+// When the server starts, it will log a message to the console with the URL
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});
