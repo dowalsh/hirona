@@ -1,5 +1,5 @@
 // Import the express module, which is a web framework for Node.js
-import express from 'express';
+express = require('express');
 
 // Create an instance of an Express application
 const app = express();
@@ -24,5 +24,4 @@ app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
 
-// Export the Express app instance
-export default app;
+module.exports = app;
