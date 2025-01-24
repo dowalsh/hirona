@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
-function App() {
-  const [message, setMessage] = useState('');
+const App: React.FC = () => {
+  const [message, setMessage] = useState<string>('');
 
   const handleClick = async () => {
     try {
@@ -26,6 +26,7 @@ function App() {
       {message && <p>{message}</p>}
     </div>
   );
-}
+};
+
 
 export default App;
