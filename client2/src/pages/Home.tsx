@@ -1,5 +1,6 @@
 import { Button } from "@mantine/core";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 // const apiUrl = process.env.REACT_APP_API_URL;
 const apiURL = import.meta.env.VITE_API_URL;
@@ -29,7 +30,7 @@ function Home() {
     <div className="home">
       <h1>Welcome to Hirona (note)!</h1>
       <Button onClick={handleClick}>Get Message from Backend</Button>
-      <Button component="a" href="/create">
+      <Button component={Link} to="/create">
         Go to Create Page
       </Button>
       {message && <p>{message}</p>}
