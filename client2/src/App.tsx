@@ -1,22 +1,32 @@
-import ListGroup from "./components/ListGroup";
+import React, { useState } from "react";
+
+// const apiUrl = process.env.REACT_APP_API_URL;
+const apiURL = process.env.VITE_API_URL;
 
 function App() {
-  const items = ["Clare", "Andrea", "Sean", "Tighernan"];
+  const [message, setMessage] = useState("");
 
-  const handleSelectItem = (item: string) => {
-    console.log(`Selected: ${item}`);
+  const handleClick = async () => {
+    try {
+      // Make a GET request to the backend API
+      const response = await fetch(`${apiURL}/api/test`);
+      const data = await response.json();
+
+      // Set the message in the state
+      setMessage(data.message);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setMessage("Failed to fetch message from backend");
+    }
   };
 
   return (
-    <div>
-      <ListGroup
-        items={items}
-        heading="Friends"
-        onSelectItem={handleSelectItem}
-      />
+    <div className="App">
+      <h1>Welcome to Hirona!</h1>
+      <button onClick={handleClick}>Get Message from Backend</button>
+      {message && <p>{message}</p>}
     </div>
   );
 }
 
-// this line exports the App function as the default export from this module
 export default App;
