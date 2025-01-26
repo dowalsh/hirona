@@ -1,41 +1,38 @@
 import "@mantine/core/styles.css";
-import { useState } from "react";
-import { MantineProvider } from "@mantine/core";
-import { theme } from "./theme";
+// import { useState } from "react";
+import { AppShell } from "@mantine/core";
 
-// const apiUrl = process.env.REACT_APP_API_URL;
-const apiURL = import.meta.env.VITE_API_URL;
+// import { Routes, Route, useNavigate } from "react-router-dom";
+
+import Navbar from "./components/Navbar";
+import Header from "./components/Header";
+import RouterSwitcher from "./components/RouterSwitcher";
 
 function App() {
-  const [message, setMessage] = useState("");
-
-  const handleClick = async () => {
-    // log the apiURL    console.log(`apiURL: ${apiURL}`);
-    // log a message to the console
-    console.log("button clicked");
-    console.log(`apiURL: ${apiURL}`);
-    try {
-      // Make a GET request to the backend API
-      const response = await fetch(`${apiURL}/api/test`);
-      const data = await response.json();
-
-      // Set the message in the state
-      setMessage(data.message);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      setMessage("Failed to fetch message from backend");
-    }
-  };
-
   return (
-    <MantineProvider theme={theme}>
-      <div className="App">
-        <h1>Welcome to Hirona (note)!</h1>
-        <button onClick={handleClick}>Get Message from Backend</button>
-        {message && <p>{message}</p>}
-      </div>
-      App
-    </MantineProvider>
+    <div className="App" style={{ marginTop: "20px" }}>
+      <AppShell>
+        <Header />
+        <Navbar />
+        <AppShell.Main
+          style={{
+            paddingTop: "60px",
+            paddingBottom: "60px",
+            paddingLeft: "200px",
+          }}
+        >
+          <RouterSwitcher />
+        </AppShell.Main>
+        <AppShell.Footer>
+          <p>FOOTER GOES HERE!</p>
+        </AppShell.Footer>
+      </AppShell>
+
+      {/* <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/create" element={<Create />} />
+      </Routes> */}
+    </div>
   );
 }
 
