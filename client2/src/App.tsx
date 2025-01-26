@@ -22,7 +22,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Welcome to Hirona!</h1>
+      <h1>Welcome to Hirona (note)!</h1>
       <button onClick={handleClick}>Get Message from Backend</button>
       {message && <p>{message}</p>}
     </div>
