@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+// removed React import
 
 // const apiUrl = process.env.REACT_APP_API_URL;
 const apiURL = process.env.VITE_API_URL;
