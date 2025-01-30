@@ -1,6 +1,7 @@
 import "@mantine/core/styles.css";
 // import { useState } from "react";
 import { AppShell } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
 
 // import { Routes, Route, useNavigate } from "react-router-dom";
 
@@ -9,29 +10,31 @@ import Header from "./components/Header";
 import RouterSwitcher from "./components/RouterSwitcher";
 
 function App() {
+  const [opened, { toggle }] = useDisclosure(true);
+
   return (
-    <div className="App" style={{ marginTop: "20px" }}>
-      <AppShell>
-        <Header />
-        <Navbar />
-        <AppShell.Main
-          style={{
-            paddingTop: "30px",
-            paddingBottom: "60px",
-            paddingLeft: "150px",
-          }}
-        >
+    <div className="App">
+      <AppShell
+        header={{ height: 60 }}
+        navbar={{
+          width: 150,
+          breakpoint: "sm",
+          collapsed: { mobile: !opened },
+        }}
+        padding="md"
+      >
+        <Header opened={opened} toggle={toggle} />
+
+        <Navbar opened={opened} />
+
+        <AppShell.Main>
           <RouterSwitcher />
         </AppShell.Main>
+
         <AppShell.Footer>
           <p>FOOTER GOES HERE!</p>
         </AppShell.Footer>
       </AppShell>
-
-      {/* <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/create" element={<Create />} />
-      </Routes> */}
     </div>
   );
 }
