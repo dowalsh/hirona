@@ -16,9 +16,9 @@ function App() {
         <Navbar />
         <AppShell.Main
           style={{
-            paddingTop: "60px",
+            paddingTop: "30px",
             paddingBottom: "60px",
-            paddingLeft: "200px",
+            paddingLeft: "150px",
           }}
         >
           <RouterSwitcher />
